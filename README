@@ -1,0 +1,27 @@
+
+= automazerb
+
+== description
+automazerb is maze generator library for ruby.
+
+== usage
+
+  require "automaze"
+  maze = Automaze::Automaze.new
+  puts maze
+
+  panel = maze.panels(3,4)
+  panel.wall? #=> true or false
+
+  maze.each_panels do |panel,x,y|
+    if panel.wall?
+      print "XX"
+    else
+      print "  "
+    end
+  end
+
+specifying generation algorithm
+
+  Automaze::Automaze.new(:algorithm=>:boutaoshi)
+

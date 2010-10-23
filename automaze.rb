@@ -54,7 +54,7 @@ module Automaze
     def each_panels
       (0..@size_y).each do |y|
         (0..@size_x).each do |x|
-          yield(x,y)
+          yield(panels(x,y), x, y)
         end
       end
     end
@@ -83,7 +83,7 @@ module Automaze
       end
     end
 
-    def inspect
+    def to_s
       (-1..@size_y+1).each {|y|
         (-1..@size_x+1).each {|x|
           if panels(x,y).wall?
