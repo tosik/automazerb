@@ -23,6 +23,7 @@
 # THE SOFTWARE.
 
 require "active_support/inflector"
+require_relative "panel"
 
 module Automaze
   class Automaze
@@ -39,6 +40,8 @@ module Automaze
     def initialize(options={})
       @panels = {}
 
+      @size_x = options.delete(:size_x) || 30
+      @size_y = options.delete(:size_y) || 20
       self.class.include_algorithm options.delete(:algorithm) || DEFAULT_ALGORITHM
       self.generate # included algorithm
     end
@@ -46,6 +49,19 @@ module Automaze
     # nil panel is wall
     def panels(x,y)
       @panels[[x,y]] ||= Panel.new(:wall)
+    end
+
+    def to_s
+      (-1..@size_y+1).each {|y|
+        (-1..@size_x+1).each {|x|
+          if panels(x,y).wall?
+            print "XX"
+          else
+            print "  "
+          end
+        }
+        puts
+      }
     end
   end
 end
