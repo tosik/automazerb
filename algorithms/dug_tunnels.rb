@@ -79,7 +79,6 @@ module DugTunnels
 
   def dig(x, y, dir)
     xy = next_xy(x, y, dir)
-    p self
     panels(*xy).set_kind(:floor)
 
     diff = [xy[0] - x, xy[1] - y]

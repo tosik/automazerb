@@ -1,3 +1,9 @@
 require_relative "automaze"
-maze = Automaze::Automaze.new(:algorithm=>:dug_tunnels)
+
+algorithm = ARGV[0] || :dug_tunnels
+maze = Automaze::Automaze.new(
+  :algorithm=>algorithm,
+  :size_x=>40,
+  :size_y=>30)
 puts maze
+
