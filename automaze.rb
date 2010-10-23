@@ -22,9 +22,31 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-class Automaze
-  def self.say
-    "hello"
+require "active_support/inflector"
+
+module Automaze
+  class Automaze
+    DEFAULT_ALGORITHM = :boutaoshi
+
+    class << self
+      def include_algorithm(algorithm)
+        raise "cannot include because algorithm is nil" if algorithm.nil?
+        require_relative "algorithms/#{algorithm.to_s}"
+        include algorithm.to_s.capitalize.constantize
+      end
+    end
+
+    def initialize(options={})
+      @panels = {}
+
+      self.class.include_algorithm options.delete(:algorithm) || DEFAULT_ALGORITHM
+      self.generate # included algorithm
+    end
+
+    # nil panel is wall
+    def panels(x,y)
+      @panels[[x,y]] ||= Panel.new(:wall)
+    end
   end
 end
 
