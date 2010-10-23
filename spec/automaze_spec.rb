@@ -40,6 +40,7 @@ describe Automaze::Automaze do
         @maze.panels(-123, -456).floor?.should be_true
       end
     end
+
   end
 end
 

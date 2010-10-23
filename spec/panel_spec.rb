@@ -19,5 +19,21 @@ describe Automaze::Panel do
       lambda { Automaze::Panel.new(:this_is_invalid_kind) }.should raise_error
     end
   end
+
+  describe "instance" do
+    before :each do
+      @wall = Automaze::Panel.new(:wall)
+      @floor = Automaze::Panel.new(:floor)
+    end
+
+    describe "set_kind" do
+      it "can set kind" do
+        @wall.set_kind(:floor)
+        @wall.floor?.should be_true
+        @floor.set_kind(:wall)
+        @floor.wall?.should be_true
+      end
+    end
+  end
 end
 

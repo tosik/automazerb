@@ -51,7 +51,39 @@ module Automaze
       @panels[[x,y]] ||= Panel.new(:wall)
     end
 
-    def to_s
+    def each_panels
+      (0..@size_y).each do |y|
+        (0..@size_x).each do |x|
+          yield(x,y)
+        end
+      end
+    end
+
+    def four_panels(x,y)
+      [
+        panels(x-1,y),
+        panels(x+1,y),
+        panels(x,y-1),
+        panels(x,y+1),
+      ]
+    end
+
+    def three_panels(x,y)
+      [
+        panels(x-1,y),
+        panels(x+1,y),
+        panels(x,y+1),
+      ]
+    end
+
+    def random_floor(panels)
+      loop do
+        panel = panels[rand(panels.length)]
+        return panel if panel.floor?
+      end
+    end
+
+    def inspect
       (-1..@size_y+1).each {|y|
         (-1..@size_x+1).each {|x|
           if panels(x,y).wall?
