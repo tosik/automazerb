@@ -11,3 +11,8 @@ RSpec::Core::RakeTask.new do |t|
   t.pattern = "spec/*_spec.rb"
 end
 
+desc "run sample"
+task :run do
+  sh "ruby sample.rb"
+end
+
