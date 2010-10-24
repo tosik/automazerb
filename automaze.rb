@@ -45,6 +45,8 @@ module Automaze
       self.class.include_algorithm options.delete(:algorithm) || DEFAULT_ALGORITHM
       self.generate # included algorithm
     end
+    attr_reader :size_x
+    attr_reader :size_y
 
     # nil panel is wall
     def panels(x,y)
