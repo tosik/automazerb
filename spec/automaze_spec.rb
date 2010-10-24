@@ -1,6 +1,6 @@
 # coding: utf-8
 
-require_relative "../automaze"
+require_relative "../lib/automaze"
 
 describe Automaze::Automaze do
   describe "self.include_algorithm" do

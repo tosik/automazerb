@@ -1,6 +1,6 @@
 # coding: utf-8
 
-require_relative "../panel"
+require_relative "../lib/panel"
 
 describe Automaze::Panel do
   describe "check kind of panel; exp) wall?, floor?" do

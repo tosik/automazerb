@@ -1,4 +1,5 @@
-require_relative "automaze"
+$: << "lib"
+require "automaze"
 
 algorithm = ARGV[0] || :dug_tunnels
 maze = Automaze::Automaze.new(
