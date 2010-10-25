@@ -94,16 +94,18 @@ module Automaze
     end
 
     def to_s
+      str = ""
       (-1..@size_y+1).each {|y|
         (-1..@size_x+1).each {|x|
           if panels(x,y).wall?
-            print "XX"
+            str += "XX"
           else
-            print "  "
+            str += "  "
           end
         }
-        puts
+        str += "\n"
       }
+      return str
     end
   end
 end
