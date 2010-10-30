@@ -4,8 +4,9 @@
 == description
 automaze is a maze generator library for ruby.
 some algorithms include.
+
 ex) Boutaoshi (simple)
-    DugTunnels (little complex)
+DugTunnels (little complex)
 
 == installation
 
