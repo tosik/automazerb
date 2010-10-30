@@ -27,7 +27,7 @@ require "panel"
 
 module Automaze
   class Automaze
-    DEFAULT_ALGORITHM = :boutaoshi
+    DEFAULT_ALGORITHM = :dug_tunnels
 
     class << self
       def include_algorithm(algorithm)
