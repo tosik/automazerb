@@ -11,15 +11,10 @@ module DugTunnels
     init_panels
 
     # start point
-    xy = random_even_xy
-    panels(*xy).set_kind(:floor)
+    panels(*random_even_xy).set_kind(:floor)
 
-    while !dug_all?
-
-      # select random floor
-      begin
-        xy = random_even_xy
-      end while panels(*xy).wall?
+    until dug_all?
+      xy = random_floor_xy(even_hash_panels)
 
       while can_dig(*xy)
         dir = random_direction
@@ -50,10 +45,6 @@ module DugTunnels
     panels(*next_xy(x, y, dir))
   end
 
-  def random_even_xy
-    [rand(@size_x/2 + 1) * 2, rand(@size_y/2 + 1) * 2]
-  end
-
   def can_dig(x, y)
     (0..3).each do |dir|
       unless out_of_map?(*next_xy(x, y, dir))
@@ -69,7 +60,6 @@ module DugTunnels
         return false if panel.wall?
       end
     end
-
     return true
   end
 

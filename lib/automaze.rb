@@ -78,10 +78,27 @@ module Automaze
       ]
     end
 
+    def even_hash_panels
+      @panels.select {|xy, panel|
+        xy[0].even? && xy[1].even?
+      }
+    end
+
     def random_floor(panels)
       floors = panels.select {|panel| panel.floor?}
       raise "no floors" if floors.empty?
       floors[rand(floors.length)]
+    end
+
+    def random_even_xy
+      [rand(@size_x/2 + 1) * 2, rand(@size_y/2 + 1) * 2]
+    end
+
+    def random_floor_xy(hash_panels)
+      floors = hash_panels.select {|xy, panel| panel.floor?}
+      raise "no floors" if floors.empty?
+      return floors.to_a.first.first if floors.length == 1
+      floors.to_a[rand(floors.length)].first
     end
 
     def out_of_map?(x, y)
