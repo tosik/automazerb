@@ -34,11 +34,7 @@ module DugTunnels
   end
 
   def random_direction
-    return rand(4)
-    @dir ||= 0
-    @dir += 1
-    @dir = 0 if @dir == 4
-    @dir
+    rand(4)
   end
 
   def next_xy(x, y, dir)
