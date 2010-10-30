@@ -4,6 +4,10 @@
 == description
 automazerb is maze generator library for ruby.
 
+== installation
+
+  gem install automaze
+
 == usage
 
   require "automaze"
@@ -19,6 +23,7 @@ automazerb is maze generator library for ruby.
     else
       print "  "
     end
+    puts if x == 0
   end
 
 specifying generation algorithm
