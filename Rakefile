@@ -23,7 +23,7 @@ begin
     gemspec.summary = "maze generator"
     gemspec.email = "toshi.hirooka@gmail.com"
     gemspec.homepage = "http://github.com/tosik/automazerb"
-    gemspec.description = "maze generator"
+    gemspec.description = "automaze is a maze generator library for ruby."
     gemspec.authors = ["Toshiyuki Hirooka"]
 
     gemspec.add_dependency("activesupport", ">= 3.0.1")

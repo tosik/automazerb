@@ -1,8 +1,11 @@
 
-= automazerb
+= automaze
 
 == description
-automazerb is maze generator library for ruby.
+automaze is a maze generator library for ruby.
+some algorithms include.
+ex) Boutaoshi (simple)
+    DugTunnels (little complex)
 
 == installation
 
@@ -12,11 +15,13 @@ automazerb is maze generator library for ruby.
 
   require "automaze"
   maze = Automaze::Automaze.new
-  puts maze
+  puts maze # printing maze
 
+  # access panels(x, y)
   panel = maze.panels(3,4)
   panel.wall? #=> true or false
 
+  # each panels
   maze.each_panels do |panel,x,y|
     if panel.wall?
       print "XX"
