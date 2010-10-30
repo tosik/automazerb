@@ -25,6 +25,8 @@ begin
     gemspec.homepage = "http://github.com/tosik/automazerb"
     gemspec.description = "maze generator"
     gemspec.authors = ["Toshiyuki Hirooka"]
+
+    gemspec.add_dependency("activesupport", ">= 3.0.1")
   end
 end
 
