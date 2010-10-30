@@ -23,7 +23,7 @@
 # THE SOFTWARE.
 
 require "active_support/inflector"
-require_relative "panel"
+require "panel"
 
 module Automaze
   class Automaze
