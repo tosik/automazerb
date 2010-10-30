@@ -32,7 +32,7 @@ module Automaze
     class << self
       def include_algorithm(algorithm)
         raise "cannot include because algorithm is nil" if algorithm.nil?
-        require_relative "algorithms/#{algorithm.to_s}"
+        require "algorithms/#{algorithm.to_s}"
         include algorithm.to_s.camelize.constantize
       end
     end
@@ -79,10 +79,9 @@ module Automaze
     end
 
     def random_floor(panels)
-      loop do
-        panel = panels[rand(panels.length)]
-        return panel if panel.floor?
-      end
+      floors = panels.select {|panel| panel.floor?}
+      raise "no floors" if floors.empty?
+      floors[rand(floors.length)]
     end
 
     def out_of_map?(x, y)
