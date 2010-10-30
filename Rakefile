@@ -16,3 +16,15 @@ task :run do
   sh "ruby sample.rb"
 end
 
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "automaze"
+    gemspec.summary = "maze generator"
+    gemspec.email = "toshi.hirooka@gmail.com"
+    gemspec.homepage = "http://github.com/tosik/automazerb"
+    gemspec.description = "maze generator"
+    gemspec.authors = ["Toshiyuki Hirooka"]
+  end
+end
+
