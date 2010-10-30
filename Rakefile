@@ -28,5 +28,9 @@ begin
 
     gemspec.add_dependency("activesupport", ">= 3.0.1")
   end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
+
 
