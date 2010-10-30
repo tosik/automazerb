@@ -2,10 +2,14 @@ $: << "lib"
 require "automaze"
 
 algorithm = ARGV[0] || :dug_tunnels
+
+start = Time.now
 maze = Automaze::Automaze.new(
   :algorithm=>algorithm,
   :size_x=>40,
   :size_y=>30)
+
+puts "#{Time.now - start} seconds"
 
 # building rooms
 5.times do
