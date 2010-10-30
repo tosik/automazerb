@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "automaze.gemspec",
      "lib/algorithms/boutaoshi.rb",
      "lib/algorithms/dug_tunnels.rb",
      "lib/automaze.rb",
