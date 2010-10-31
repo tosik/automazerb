@@ -42,7 +42,7 @@ module Automaze
 
       @size_x = options.delete(:size_x) || 30
       @size_y = options.delete(:size_y) || 20
-      self.class.include_algorithm options.delete(:algorithm) || DEFAULT_ALGORITHM
+      self.class.include_algorithm(options.delete(:algorithm) || DEFAULT_ALGORITHM)
       self.generate # included algorithm
     end
     attr_reader :size_x
@@ -110,18 +110,15 @@ module Automaze
     end
 
     def to_s
-      str = ""
-      (-1..@size_y+1).each {|y|
-        (-1..@size_x+1).each {|x|
+      (-1..@size_y+1).map {|y|
+        (-1..@size_x+1).map {|x|
           if panels(x,y).wall?
-            str += "XX"
+            "XX"
           else
-            str += "  "
+            "  "
           end
-        }
-        str += "\n"
-      }
-      return str
+        }.join + "\n"
+      }.join
     end
   end
 end
