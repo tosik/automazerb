@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{automaze}
-  s.version = "0.0.1"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Toshiyuki Hirooka"]
   s.date = %q{2010-10-31}
-  s.description = %q{maze generator}
+  s.description = %q{automaze is a maze generator library for ruby.}
   s.email = %q{toshi.hirooka@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
