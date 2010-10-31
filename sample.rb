@@ -13,8 +13,8 @@ puts "#{Time.now - start} seconds"
 
 # building rooms
 5.times do
-  room_size_x = rand(2) * 2 + 1
-  room_size_y = rand(2) * 2 + 1
+  room_size_x = rand(2) + 1
+  room_size_y = rand(2) + 1
   center_x = rand(maze.size_x/2-room_size_x)*2 + room_size_x
   center_y = rand(maze.size_y/2-room_size_y)*2 + room_size_y
   (-room_size_x..room_size_x).each do |x|
