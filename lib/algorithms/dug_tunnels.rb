@@ -8,6 +8,7 @@ module DugTunnels
   end
 
   def generate
+    @dug_count = 0
     init_panels
 
     # start point
@@ -55,17 +56,13 @@ module DugTunnels
   end
 
   def dug_all?
-    each_panels do |panel, x, y|
-      if ( x % 2 ) == 0 && ( y % 2 ) == 0
-        return false if panel.wall?
-      end
-    end
-    return true
+    @dug_count >= (size_x+2)* (size_y+2) / 4 - 1
   end
 
   def dig(x, y, dir)
     xy = next_xy(x, y, dir)
     panels(*xy).set_kind(:floor)
+    @dug_count += 1
 
     diff = [xy[0] - x, xy[1] - y]
     if diff[0] == 0
