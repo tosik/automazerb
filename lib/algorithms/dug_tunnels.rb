@@ -1,3 +1,4 @@
+# encoding: utf-8
 module DugTunnels
   def init_panels
     each_panels do |panel, x, y|
