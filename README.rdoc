@@ -15,12 +15,13 @@ DugTunnels (little complex)
 == usage
 
   require "automaze"
-  maze = Automaze::Automaze.new
+  maze = Automaze::Automaze.new(:size_x=>40, :size_y=>30)
   puts maze # printing maze
 
   # access panels(x, y)
   panel = maze.panels(3,4)
   panel.wall? #=> true or false
+  panel.set_kind(:floor)
 
   # each panels
   maze.each_panels do |panel,x,y|
@@ -32,7 +33,6 @@ DugTunnels (little complex)
     puts if x == 0
   end
 
-specifying generation algorithm
 
-  Automaze::Automaze.new(:algorithm=>:boutaoshi)
+more usage? read example.rb
 
