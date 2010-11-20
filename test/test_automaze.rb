@@ -5,6 +5,7 @@ class TestAutomaze < Test::Unit::TestCase
   context "self.include_algorithm" do
     should "includes algorithm module" do
       assert_nothing_raised() { Automaze::Automaze.include_algorithm(:boutaoshi) }
+      assert Automaze::Automaze.included_modules.include?(Boutaoshi)
     end
   end
 
