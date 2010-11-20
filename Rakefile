@@ -1,36 +1,54 @@
-# coding: utf-8
-
-require "rake"
-require "rspec/core/rake_task"
-
-task :default => [:spec]
-
-desc "spec all"
-RSpec::Core::RakeTask.new do |t|
-  t.name = "spec"
-  t.pattern = "spec/*_spec.rb"
-end
-
-desc "run sample"
-task :run do
-  sh "ruby sample.rb"
-end
-
+require 'rubygems'
+require 'bundler'
 begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "automaze"
-    gemspec.summary = "maze generator"
-    gemspec.email = "toshi.hirooka@gmail.com"
-    gemspec.homepage = "http://github.com/tosik/automazerb"
-    gemspec.description = "automaze is a maze generator library for ruby."
-    gemspec.authors = ["Toshiyuki Hirooka"]
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
+require 'rake'
 
-    gemspec.add_dependency("activesupport", ">= 3.0.1")
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "automaze"
+  gem.homepage = "http://github.com/tosik/automazerb"
+  gem.license = "MIT"
+  gem.summary = "maze generator"
+  gem.description = %Q{automaze is a maze generator library for ruby.}
+  gem.email = "toshi.hirooka@gmail.com"
+  gem.authors = ["Toshiyuki Hirooka"]
+  # Include your dependencies below. Runtime dependencies are required when using your gem,
+  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
+  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
+  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+end
+Jeweler::RubygemsDotOrgTasks.new
+
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
 end
 
+require 'rcov/rcovtask'
+Rcov::RcovTask.new do |test|
+  test.libs << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
+end
+
+task :default => :test
+
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "automaze #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
 
