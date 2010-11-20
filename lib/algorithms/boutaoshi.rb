@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Boutaoshi
   def init_panels
     each_panels do |panel, x, y|

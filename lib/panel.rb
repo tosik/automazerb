@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Automaze
   class Panel
     def initialize(kind)
