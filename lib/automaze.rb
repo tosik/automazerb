@@ -3,6 +3,8 @@ require "active_support/inflector"
 require "panel"
 
 module Automaze
+  class OddLengthMaze < Exception; end
+
   class Automaze
     DEFAULT_ALGORITHM = :dug_tunnels
 
@@ -19,6 +21,7 @@ module Automaze
 
       @size_x = options.delete(:size_x) || 30
       @size_y = options.delete(:size_y) || 20
+      raise OddLengthMaze if @size_x.odd? || @size_y.odd?
       self.class.include_algorithm(options.delete(:algorithm) || DEFAULT_ALGORITHM)
       self.generate # included algorithm
     end

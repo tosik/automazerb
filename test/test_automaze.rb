@@ -41,4 +41,13 @@ class TestAutomaze < Test::Unit::TestCase
       end
     end
   end
+
+  context "odd length maze" do
+    should "raise ODD_LENGTH_MAZE" do
+      assert_raise(Automaze::OddLengthMaze) { Automaze::Automaze.new(:size_x => 15, :size_y => 15) }
+      assert_raise(Automaze::OddLengthMaze) { Automaze::Automaze.new(:size_x => 15, :size_y => 16) }
+      assert_raise(Automaze::OddLengthMaze) { Automaze::Automaze.new(:size_x => 16, :size_y => 15) }
+      assert_nothing_raised() { Automaze::Automaze.new(:size_x => 16, :size_y => 16) }
+    end
+  end
 end
