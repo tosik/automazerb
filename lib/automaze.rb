@@ -1,7 +1,4 @@
 # encoding: utf-8
-require "active_support/inflector"
-require "panel"
-
 module Automaze
   class OddLengthMaze < Exception; end
 
@@ -11,8 +8,12 @@ module Automaze
     class << self
       def include_algorithm(algorithm)
         raise "cannot include because algorithm is nil" if algorithm.nil?
-        require "algorithms/#{algorithm.to_s}"
-        include algorithm.to_s.camelize.constantize
+        case algorithm
+        when :dug_tunnels
+          include DugTunnels
+        when :boutaoshi
+          include Boutaoshi
+        end
       end
     end
 
@@ -21,7 +22,7 @@ module Automaze
 
       @size_x = options.delete(:size_x) || 30
       @size_y = options.delete(:size_y) || 20
-      raise OddLengthMaze if @size_x.odd? || @size_y.odd?
+      raise OddLengthMaze if @size_x % 2 == 1 || @size_y % 2 == 1
       self.class.include_algorithm(options.delete(:algorithm) || DEFAULT_ALGORITHM)
       self.generate # included algorithm
     end
@@ -60,7 +61,7 @@ module Automaze
 
     def even_hash_panels
       @panels.select {|xy, panel|
-        xy[0].even? && xy[1].even?
+        xy[0] % 2 == 0 && xy[1] % 2 == 0
       }
     end
 
@@ -71,7 +72,7 @@ module Automaze
     end
 
     def random_even_xy
-      [rand(@size_x/2 + 1) * 2, rand(@size_y/2 + 1) * 2]
+      [rand((@size_x/2).to_i + 1) * 2, rand((@size_y/2).to_i + 1) * 2]
     end
 
     def random_floor_xy(hash_panels)
