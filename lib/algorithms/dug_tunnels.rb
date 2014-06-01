@@ -14,7 +14,14 @@ module DugTunnels
     panels(*random_even_xy).set_kind(:floor)
 
     until dug_all?
-      xy = random_floor_xy(even_hash_panels)
+      even_floor_panels = []
+      each_panels do |panel, x, y|
+        if x % 2 == 0 && y % 2 == 0
+          even_floor_panels.push([x, y]) if panel.floor?
+        end
+      end
+
+      xy = even_floor_panels.sample
 
       while can_dig(*xy)
         dir = random_direction
@@ -55,7 +62,7 @@ module DugTunnels
   end
 
   def dug_all?
-    @dug_count >= (size_x+2)* (size_y+2) / 4 - 1
+    @dug_count >= ((size_x) * (size_y) / 4 - 1).to_i
   end
 
   def dig(x, y, dir)

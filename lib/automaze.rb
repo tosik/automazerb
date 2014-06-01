@@ -18,11 +18,11 @@ module Automaze
     end
 
     def initialize(options={})
-      @panels = {}
-
       @size_x = options.delete(:size_x) || 30
       @size_y = options.delete(:size_y) || 20
       raise OddLengthMaze if @size_x % 2 == 1 || @size_y % 2 == 1
+      initialize_panels
+
       self.class.include_algorithm(options.delete(:algorithm) || DEFAULT_ALGORITHM)
       self.generate # included algorithm
     end
@@ -31,7 +31,18 @@ module Automaze
 
     # nil panel is wall
     def panels(x,y)
-      @panels[[x,y]] ||= Panel.new(:wall)
+      dest = @panels[x][y]
+      raise if dest.nil?
+      dest
+    rescue
+      @outer_panel ||= Panel.new(:wall)
+    end
+
+    def initialize_panels
+      @panels = Array.new(@size_y).map { Array.new(@size_x, nil) }
+      each_panels do |panel, x, y|
+        @panels[x][y] = Panel.new(:wall) if @panels[x]
+      end
     end
 
     def each_panels
